@@ -34,4 +34,4 @@ jobs:
 
       # Deploy with Vagrant
       - name: Deploy
-        run: java -jar build/libs/spring-petclinic-3.4.0.jar
+        run: nohup java -jar build/libs/spring-petclinic-3.4.0.jar > app.log 2>&1 &
