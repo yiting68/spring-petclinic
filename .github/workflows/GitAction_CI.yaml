@@ -34,5 +34,4 @@ jobs:
 
       # Optional: You can add deployment steps here if needed...
       - name: Deploy
-        run: |
-          echo "This is where you'd deploy your JAR testing."
+        run: vagrant up --provision
