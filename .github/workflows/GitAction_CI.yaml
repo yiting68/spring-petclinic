@@ -23,13 +23,17 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      # Build
       - name: Build with Gradle
         run: ./gradlew clean build
 
       - name: Upload Build-Artifacts
         uses: actions/upload-artifact@v3
-        path: build/libs/**
+        with:
+          name: build-artifacts
+          path: build/libs/**
 
+      # Test
       - name: Run Unit Tests
         run: ./gradlew test
 
@@ -47,5 +51,6 @@ jobs:
           name: code-coverage-report
           path: build/reports/jacoco/test/html/**
 
+      # Deploy
       - name: Deploy
         run: nohup java -jar build/libs/spring-petclinic-3.4.0.jar > app.log 2>&1 &
