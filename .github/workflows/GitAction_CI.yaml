@@ -26,6 +26,11 @@ jobs:
       # Install Vagrant for deployment
       - name: Install Vagrant
         run: |
+          - name: Install Vagrant
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg2
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
           sudo apt-get update
           sudo apt-get install -y vagrant
 
