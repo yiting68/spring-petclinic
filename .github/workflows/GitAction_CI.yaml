@@ -23,9 +23,8 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-
-        #name: Grant execute permission for Gradle Wrapper
-        #run: chmod +x gradlew
+      #name: Grant execute permission for Gradle Wrapper
+      # run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew clean build
@@ -36,9 +35,3 @@ jobs:
       # Deploy with Vagrant
       - name: Deploy
         run: nohup java -jar build/libs/spring-petclinic-3.4.0.jar > app.log 2>&1 &
-
-      - #name: Upload Artifact (JAR)
-        #uses: actions/upload-artifact@v2
-        #with:
-          #name: petclinic-artifact
-          #path: build/libs/*.jar
