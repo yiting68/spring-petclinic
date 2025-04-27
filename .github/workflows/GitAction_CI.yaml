@@ -23,15 +23,29 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      #name: Grant execute permission for Gradle Wrapper
-      # run: chmod +x gradlew
-
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: Run Tests
+      - name: Upload Build-Artifacts
+        uses: actions/upload-artifact@v3
+        path: build/libs/**
+
+      - name: Run Unit Tests
         run: ./gradlew test
 
-      # Deploy with Vagrant
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: build/reports/tests/**
+      - name: Generate code coverage report
+        run: ./gradlew jacocoTestReport
+
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: build/reports/jacoco/test/html/**
+
       - name: Deploy
         run: nohup java -jar build/libs/spring-petclinic-3.4.0.jar > app.log 2>&1 &
