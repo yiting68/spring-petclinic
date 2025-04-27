@@ -22,6 +22,12 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "17"
+      
+      # Install Vagrant for deployment
+      - name: Install Vagrant
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y vagrant
 
       #name: Grant execute permission for Gradle Wrapper
       # run: chmod +x gradlew
@@ -32,6 +38,6 @@ jobs:
       - name: Run Tests
         run: ./gradlew test
 
-      # Optional: You can add deployment steps here if needed...
-      - name: Deploy
+      # Deploy with Vagrant
+      - name: Deploy with Vagrant
         run: vagrant up --provision
