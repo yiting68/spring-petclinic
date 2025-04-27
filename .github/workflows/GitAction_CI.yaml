@@ -32,7 +32,7 @@ jobs:
     - name: Run Tests
       run: ./gradlew test
 
-    # Optional: You can add deployment steps here if needed
+    # Optional: You can add deployment steps here if needed...
     - name: Deploy (example)
       run: |
         echo "This is where you'd deploy your JAR."
